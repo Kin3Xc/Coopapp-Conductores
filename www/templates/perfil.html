@@ -1,0 +1,38 @@
+
+<ion-view view-title="Perfil Alumno" left-buttons="leftButtons" right-buttons="rightButtons">
+<ion-content>
+  <div class="list card">
+
+    <div class="item item-avatar">
+      <img src="img/user.png">
+      <h2>{{perfil.alu_nombre}}</h2>
+      <p>Documento : {{perfil.alu_documento}}</p>
+      <p>ID: {{perfil.alu_id}}</p>
+    </div>
+
+    <div class="item item-body">
+      <p>Direccion : {{perfil.alu_dir}}</p>
+      <p>Barrio : {{perfil.alu_barrio}}</p>
+      <p>Telefono : {{perfil.alu_telfijo}}</p>
+      <p>Fecha nacimiento : 2005-10-07</p>
+      <p> Curso : 303</p>
+    </div>
+    <div class="item tabs tabs-secondary tabs-icon-left">
+      <a class="tab-item" href="{{perfil.alu_telcelular}}">
+        <i class="icon ion-android-call"></i>
+        Llamar
+      </a>
+      <a class="tab-item" ng-click="chat()">
+        <i class="icon ion-chatbubbles"></i>
+        Chat
+      </a>
+      <a class="tab-item" href="#">
+        <i class="icon ion-chatbox"></i>
+        Notificaciones
+      </a>
+    </div>
+
+  </div>
+</ion-content>
+
+</ion-view>

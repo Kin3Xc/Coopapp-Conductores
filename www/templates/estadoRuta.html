@@ -1,0 +1,45 @@
+<!-- <ion-view view-title="Estados Ruta" left-buttons="leftButtons" right-buttons="rightButtons"> -->
+<ion-view view-title="Ruta" left-buttons="leftButtons" right-buttons="rightButtons">
+<ion-content ng-init="getAlumnos()">
+	<ion-list>
+		<ion-item class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap">
+			<div>
+				<h2>Ruta #41</h2>
+				<p>Origen: BANDERAS</p>
+				<p>Destino: CASTILLA</p>
+			</div>
+		</ion-item>
+		<div class="list card">
+			<a href="#"  ng-click="showConfirm()" class="item item-icon-left">
+				<i class="icon ion-ios-navigate-outline"></i>
+				Recogida
+			</a>
+			<a href="#"  ng-click="showConfirm()" class="item item-icon-left">
+				<i class="icon ion-ios-location-outline"></i>
+				Llegada
+			</a>
+
+			<a href="#"  ng-click="showConfirm()" class="item item-icon-left">
+				<i class="icon ion-wifi"></i>
+				Trancon
+			</a>
+
+			<a href="#"  ng-click="showConfirm()" class="item item-icon-left">
+				<i class="icon ion-ios-crop"></i>
+				Problemas mecanicos
+			</a>
+
+			<a href="#"  ng-click="showConfirm()" class="item item-icon-left">
+				<i class="icon ion-ios-person-outline"></i>
+				Policia de transito
+			</a>
+
+			<a href="#"  ng-click="estado_adicional()" class="item item-icon-left">
+				<i class="icon ion-ios-redo-outline"></i>
+				Otro
+			</a>
+		</div>
+	</ion-list>
+	<button class="button button-balanced center" ng-click="verResumenRuta()">Ver Historial Notificaiones</button>
+</ion-content>
+</ion-view>

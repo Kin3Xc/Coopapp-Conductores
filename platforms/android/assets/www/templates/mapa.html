@@ -1,0 +1,16 @@
+<ion-view view-title="Mi ruta" left-buttons="leftButtons" right-buttons="rightButtons">
+  <ion-content class="Ruta" scroll="false">
+    <div class="mapWrap"  data-tap-disabled="true">
+      <map center="43.07493,-89.381388" zoom="15">
+        <!-- ngRepeat: pos in positions -->
+        <marker ng-repeat=" pos in positions" position="{{pos.lat}},{{pos.lng}}"></marker>
+      </map>
+    </div>
+    <button class="button button-icon ion-pinpoint" ng-click="centerOnMe()"></button>
+  </ion-content>
+  <ion-footer-bar align-title="left" class="bar-coopapp">
+  <div class="buttons">
+    <button class="button button-icon ion-pinpoint" ng-click="centerOnMe()"></button>
+  </div>
+</ion-footer-bar>
+</ion-view>
