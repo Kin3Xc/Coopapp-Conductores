@@ -6,6 +6,15 @@
   </ion-header-bar> -->
   <ion-content ng-init="getAlumnos()" class="notification">
     <p>Sleccione la notificación que desea envíar</p>
+
+    <button class="button button-block button-dark" ng-click="identifyUser()">  
+      Identificarme
+    </button> 
+
+    <button class="button button-block button-positive" ng-if="identified" ng-click="pushRegister()">
+      Registrar para Notificaciones Push
+     </button>
+
     <ion-list>
       <ion-item class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap" ng-click="send_notify()" href="">
         <img ng-src="img/notify.png">

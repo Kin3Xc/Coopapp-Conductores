@@ -1,0 +1,11 @@
+{
+  "type": "service_account",
+  "private_key_id": "efb0157695a47d07ee82b4a6b10ef6faac30e309",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCkeVnOeDpKnT4W\nsjVJrlCtQ+C5Td7GKbKgNFVbST6V2vdWxPiOCF87VDJDgvhLNYil0uPy6nck+m2p\n7lfLPFd0orKvKPpucbE47GEzbuFp8RM8NqiN3JxTmsv4HX2B4ANinJA4m61A++SG\nJL9mBdvErof0PqNIGIwAwmg/wX8bXRFPx59ouYWqlWV80VbNWV6eb73k+vSwIbXj\n29rTAWBBXOER6D5dDiuasIonkeBRtnzl0V/VRm9nRUM6yOxyS3YFdAG48Dsc/G1B\nuDOYphDk7hdNqeHvqsgKf0b7M4zDEDNmBfV1LNJPT1O0QXyKPFLo67wPiBS5Hwe9\n/MIDyj6vAgMBAAECggEASM6bLaXVEACJYpyisCok9n4stXq+GfSNaROhkVZcCRQ0\nF0n8SUt1dJrx4SbR6OEay2UOmRKniUv+TZH/dS0R/cSj2pwGN+vGKs+gu5bi2/Xm\nsOn1NU8qOGw2zG+phlt2xClQQm7PhAu9fpA31d7UCT3FWx57Q0fyeceVRFvQe3jB\nWVBRWX1xpBCc2B1zJHoHdM9Xo1Eg0L9E7VCzXCsl6fkuTW72eq8tC3uTRcUyShZP\njEOg8EvgP3qJK3ll1uyFDmmg4nVkQzrO5xUD55nu1JFzSMhvov8p+H4Jw/k1IKHB\nAmT0rhvzI/Cl/ZyjoKDKN2a59TyoGaTmZc1SNWL2eQKBgQDnh682vCUcRN+23xes\nh+T2W83+qNIDAvXKm5zkrDVqretPldocWlA8yOl+YgGU0ew/S8VxUDWHyIOSt8Fl\nuhQ8gQWH4/CNOoi+6cwvLIvrD2P0ZANnCBBk0Ik8KmUPHm+K7G32VTI/QBQgwvXR\nHoqQut1cktc50Tvj/O1y1TJS0wKBgQC122NY6CvwvS6gvy8mFbkPeOKQ4B3J/rTv\nl5RCbe7pTybprWyq7kOPjBHDUlmp3PN2PU1jXLkm17pQxw8skX3l70l7aSoC9mBa\n0q97rSoo9Bhv9sG8BhVxIKu2od7nKiy19QTH+Qyt+XIxODOc1PR9IOiVnYL3UTRd\nzXgbGprjNQKBgQCuV0B7ob78A2zF4kWMWCPz0ntSCENjmyYD85t3oajzdJTdL8S2\nVtdWfh88WIZCTrRrkR3SzogQf897ejz54d19FdZZVi172xi/UYO7/fo5/TPSAkGB\notPdZh4AnRfOA6gQXyoKNGsKr7C4XrYFSs8iXmNzYusIEWLcsUcHkjw7mwKBgEfe\niAie2J6vZToJ1GxMsXI35/IxYBRwILl/Qgxuvbhem5ZF/2gd+X1Fcc+rP9wtgdn8\nqBTYlCORpgQ+ZvTKGuNACd5H1V6OV84M7WUHLl44+V9mOXJBRUAMFVB78EeTF1Bh\noJ4XArfOmR5yg5M7ZdP9qW1XbmanJPbdONYdUZDxAoGBAOVUFEO0c5T4KhLQr26p\ndp0uNOW1RxWGnkrs4yDPX+ar37jlfiK0aonBUUs1YUjpxrMmeByZ1JOfpmPX5HNL\n64+VR4uyu/k3lu4SF3myeU1hAUSA2dOpawb2grdCD18W6Y8aZ2Mf7z4rtOeO9pnB\nO8NrOd8qkj+noHIdGUr9KcB8\n-----END PRIVATE KEY-----\n",
+  "client_email": "account-1@coopapp-1141.iam.gserviceaccount.com",
+  "client_id": "113595473891517391097",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/account-1%40coopapp-1141.iam.gserviceaccount.com"
+}
