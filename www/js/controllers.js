@@ -81,7 +81,7 @@ angular.module('coopapp.controllers', ['ionic', 'ngCordova','LocalStorageModule'
 			var long = position.coords.longitude
 
 			var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-			$scope.positions.push({location: {lat:latitude, lng: long});
+			$scope.positions.push({location: {lat:latitude, lng: long}});
 			console.log(pos);
 			$scope.map.setCenter(pos);
 			$ionicLoading.hide();
@@ -171,7 +171,58 @@ angular.module('coopapp.controllers', ['ionic', 'ngCordova','LocalStorageModule'
 
 })
 
-.controller('notificationCtrl', function($scope,  $ionicPopup){
+.controller('notificationCtrl', function($scope,  $ionicPopup, $rootScope, $ionicUser, $ionicPush){
+
+	//Mostramos el token del dispositivo
+	$rootScope.$on('$cordovaPush:tokenReceived', function(event, data) {
+	    console.log('Registrado correctamente. El token es: ' + data.token);
+	    $scope.token = data.token;
+	});
+
+	// Registramos un dispositivo para recibir notificaciones PUSH
+	$scope.pushRegister = function() {
+	    console.log('Registrando Para PUSH');
+
+	    // Lo registramos contra Ionic Service, los parametros son opcionales
+	    $ionicPush.register({
+	      canShowAlert: true, //Se pueden mostrar alertas en pantalla
+	      canSetBadge: true, //Puede actualizar badgeds en la app
+	      canPlaySound: true, //Puede reproducir un sonido
+	      canRunActionsOnWake: true, //Puede ejecutar acciones fuera de la app
+	      onNotification: function(notification) {
+	        // Cuando recibimos una notificacion, la manipulamos aqui
+	        alert(notification.message);
+	        return true;
+	      }
+	    });
+	};
+
+	// Number Proyect = 242623379335
+	//  Identificamos al usuario con el servicio de Ionic al pulsar el boton
+	$scope.identifyUser = function(){
+		console.log('Ionic: Identificando al usuario');
+
+	    //Si no tenemos un user_id, generamos uno nuevo
+	    var user = $ionicUser.get();
+	    if(!user.user_id) {
+	      user.user_id = $ionicUser.generateGUID();
+	    };
+
+	     // Establecemos alguna información para nuestro usuario
+	    angular.extend(user, {
+	      name: 'Elkin Urango',
+	      description: 'Fullstack Developer',
+	      location: 'Bogotá Colombia',
+	      website: 'http://elkinrango.github.io'
+	    });
+
+	    // Cuando tenemos todos los datos, nos identificamos contra el Ionic User Service
+
+	    $ionicUser.identify(user).then(function(){
+	      $scope.identified = true;
+	      alert('Usuario identificado: ' + user.name + '\n ID ' + user.user_id);
+	    });
+	};
 
 	// Triggered on a button click, or some other target
 	$scope.send_notify = function() {
