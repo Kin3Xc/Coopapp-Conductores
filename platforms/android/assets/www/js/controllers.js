@@ -192,6 +192,7 @@ angular.module('coopapp.controllers', ['ionic', 'ngCordova','LocalStorageModule'
 	      onNotification: function(notification) {
 	        // Cuando recibimos una notificacion, la manipulamos aqui
 	        alert(notification.message);
+					console.log(notification.message);
 	        return true;
 	      }
 	    });
@@ -221,6 +222,7 @@ angular.module('coopapp.controllers', ['ionic', 'ngCordova','LocalStorageModule'
 	    $ionicUser.identify(user).then(function(){
 	      $scope.identified = true;
 	      alert('Usuario identificado: ' + user.name + '\n ID ' + user.user_id);
+				console.log('Usuario identificado: ' + user.name + '\n ID ' + user.user_id);
 	    });
 	};
 

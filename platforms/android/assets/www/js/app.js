@@ -18,7 +18,19 @@ angular.module('coopapp', ['ionic', 'coopapp.controllers', 'ionic.service.core',
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+// .config([ '$ionicAppProvider', function($ionicAppProvider) {
+//   $ionicAppProvider.identify({
+//     app_id : 'XXXXXX',
+//     api_key : 'XXXXXXXXXXXXXX'
+//   });
+// } ]);
+
+.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, $ionicAppProvider) {
+
+    $ionicAppProvider.identify({
+      app_id : '572f7af0',
+      api_key : 'cb2853f6f87b0bbbf2840c6ecc76b879861e12ae4f8df203'
+    });
 
   $stateProvider
 
