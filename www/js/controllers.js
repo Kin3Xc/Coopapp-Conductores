@@ -192,7 +192,7 @@ angular.module('coopapp.controllers', ['ionic', 'ngCordova','LocalStorageModule'
 	      onNotification: function(notification) {
 	        // Cuando recibimos una notificacion, la manipulamos aqui
 	        alert(notification.message);
-					console.log(notification.message);
+			console.log(notification.message);
 	        return true;
 	      }
 	    });
