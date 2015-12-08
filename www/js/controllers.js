@@ -62,6 +62,9 @@ angular.module('coopapp.controllers', ['ionic', 'ngCordova','LocalStorageModule'
 	$scope.positions = [{
 		lat: 43.07493,
 		lng: -89.381388
+	},{
+		lat: 43.07493,
+		lng: -89.541388
 	}];
 
 	$scope.$on('mapInitialized', function(event, map) {
