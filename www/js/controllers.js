@@ -17,7 +17,7 @@ angular.module('coopapp.controllers', ['ionic', 'ngCordova','LocalStorageModule'
 
 			$http({
 				method: 'POST',
-				url: "https://ikarotech.com/cooptranslibre2/api/loginConductor",
+				url: "https://ikarotech.com/cooptranslibre2/apiapp/loginConductor",
 				params: $scope.login
 			})
 			.success(function(data){
@@ -113,7 +113,7 @@ angular.module('coopapp.controllers', ['ionic', 'ngCordova','LocalStorageModule'
 	// $http.get('https://ikarotech.com/cooptranslibre2/api/cConductorVehiculo/'+ con_id)
 	$http({
 		method: 'GET',
-		url: 'https://ikarotech.com/cooptranslibre2/api/cConductorRuta/'+ con_id
+		url: 'https://ikarotech.com/cooptranslibre2/apiapp/cConductorRuta/'+ con_id
 	})
 	.success(function(data){
 		console.log(data);
@@ -121,7 +121,7 @@ angular.module('coopapp.controllers', ['ionic', 'ngCordova','LocalStorageModule'
 
 		$http({
 			method: 'GET',
-			url: 'https://ikarotech.com/cooptranslibre2/api/cIdRutaConductor/'+ data[0].veh_id
+			url: 'https://ikarotech.com/cooptranslibre2/apiapp/cIdRutaConductor/'+ data[0].veh_id
 		})
 		.success(function(data1){
 			console.log(data1);
@@ -129,7 +129,7 @@ angular.module('coopapp.controllers', ['ionic', 'ngCordova','LocalStorageModule'
 
 			$http({
 				method: 'GET',
-				url: 'https://ikarotech.com/cooptranslibre2/api/cRutaConductor/'+ data1[0].idRuta
+				url: 'https://ikarotech.com/cooptranslibre2/apiapp/cRutaConductor/'+ data1[0].idRuta
 			})
 			.success(function(data2){
 				console.log(data2);
@@ -137,7 +137,7 @@ angular.module('coopapp.controllers', ['ionic', 'ngCordova','LocalStorageModule'
 
 				$http({
 					method: 'GET',
-					url: 'https://ikarotech.com/cooptranslibre2/api/cAlumnosRuta/'+ data2[0].idColegio+'/'+data1[0].idRuta
+					url: 'https://ikarotech.com/cooptranslibre2/apiapp/cAlumnosRuta/'+ data2[0].idColegio+'/'+data1[0].idRuta
 				})
 				.success(function(data3){
 					console.log(data3);
