@@ -58,26 +58,29 @@ angular.module('coopapp.controllers', ['ionic', 'ngCordova','LocalStorageModule'
 
 //Controlador para octener la pocision actual del usuario
 //.controller('MapaCtrl',[ '$scope', '$cordovaGeolocation', function($scope, $ionicLoading , $cordovaGeolocation){
-.controller('MapaCtrl', function($scope, $ionicLoading) {
-	$scope.positions = [{
-		lat: 43.07493,
-		lng: -89.381388
-	},{
-		lat: 43.07493,
-		lng: -89.541388
-	}];
+.controller('MapaCtrl', function($scope, $rootScope, $http, $ionicHistory, $ionicLoading, localStorageService) {
+	navigator.geolocation.getCurrentPosition(function(position){
+			var latitude  = position.coords.latitude
+			var long = position.coords.longitude
+			$scope.positions = [{
+					lat: position.coords.latitude ,
+					lng: position.coords.longitude
+				}];
+
+			var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+			$scope.positions.push({location: {lat:latitude, lng: long}});
+			$scope.map.setCenter(pos);
+			$ionicLoading.hide();
+		});
 
 	$scope.$on('mapInitialized', function(event, map) {
 		$scope.map = map;
 	});
-
 	$scope.centerOnMe= function(){
 		$scope.positions = [];
 		$ionicLoading.show({
 			template: 'Loading...'
 		});
-
-
 		navigator.geolocation.getCurrentPosition(function(position){
 			console.log('getCurrentPosition');
 			var latitude  = position.coords.latitude

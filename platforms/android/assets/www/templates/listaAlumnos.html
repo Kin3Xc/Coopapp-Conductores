@@ -12,7 +12,16 @@
       <img ng-src="img/user.png">
       <h2>{{alumno.alu_nombre}}</h2>
       <!-- <p>{{alumno.address}}</p> -->
-      <p><span class="estado">{{alumno.Hora}}</span></p>
+      <p><span class="hora">{{alumno.Hora}}</span></p>
+      <div ng-switch="alumno.estado_alumno">
+        <div ng-switch-when='1'>
+          <p class="estado-ok" >Activo</p>
+        </div>
+        <div ng-switch-when='2'>
+          <p class="estado-null" >Desactivo</p>
+        </div>
+      </div>
+
       <i class="icon ion-chevron-right icon-accessory"></i>
     </ion-item>
   </ion-list>

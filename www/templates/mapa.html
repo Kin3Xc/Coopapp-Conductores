@@ -1,8 +1,16 @@
 <ion-view view-title="Mi ruta" left-buttons="leftButtons" right-buttons="rightButtons">
   <ion-content class="Ruta" scroll="false">
     <div class="mapWrap"  data-tap-disabled="true">
-      <map center="43.07493,-89.381388" zoom="15">
+      <map center="4.661517, -74.096960" zoom="15">
         <!-- ngRepeat: pos in positions -->
+        <directions
+          draggable="true"
+          panel="directions-panel"
+          travel-mode="DRIVING"
+          on-directions_changed="vm.myFunc()"
+          origin="Bogota"
+          destination="Soacha">
+        </directions>
         <marker ng-repeat=" pos in positions" position="{{pos.lat}},{{pos.lng}}"></marker>
       </map>
     </div>
