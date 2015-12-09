@@ -85,6 +85,38 @@ $app->get('/cRutaConductorAlumnos/:id',function ($rut_id) {
 
 
 
+// NUEVO
+// permite guardar un mensaje de chat en la db
+$app->post('/iRutaConductorChat',function () {
+
+    global $db;
+
+    $con_id  =$_REQUEST[`con_id`];
+    $msj     =$_REQUEST['msj'];
+
+    $q = "INSERT INTO chat_app (
+            id_conductor, 
+            id_padre, 
+            id_estudiante, 
+            is_creator, 
+            texto_chat
+        ) VALUES (
+            '$con_id',
+            '1015445839',
+            '1016072954',
+            '1015445839',
+            '$msj'
+        );";
+
+    $datos   =   $db->query($q);
+
+        //$db->debug();
+ 
+    $mensaje = array('mensaje'=>'Inserto ok');
+
+    echo json_encode($mensaje);
+});
+
 
 
 

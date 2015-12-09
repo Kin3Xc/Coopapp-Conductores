@@ -69,13 +69,19 @@ angular.module('coopapp.controllers', ['ionic', 'ngCordova','LocalStorageModule'
 
 			var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 			$scope.positions.push({location: {lat:latitude, lng: long}});
-			$scope.map.setCenter(pos);
+			// $scope.map.setCenter(pos);
 			$ionicLoading.hide();
 		});
 
 	$scope.$on('mapInitialized', function(event, map) {
 		$scope.map = map;
 	});
+
+	$scope.wayPoints = [
+      {location: {lat:4.6690408, lng: -74.1036296}, stopover: true},
+      {location: {lat:4.7690408, lng: -74.2036296}, stopover: true},
+    ];
+
 	$scope.centerOnMe= function(){
 		$scope.positions = [];
 		$ionicLoading.show({

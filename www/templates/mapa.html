@@ -7,8 +7,9 @@
           draggable="true"
           panel="directions-panel"
           travel-mode="DRIVING"
-          on-directions_changed="vm.myFunc()"
-          origin="Bogota"
+          on-directions_changed=""
+          waypoints="{{wayPoints}}"
+          origin="4.5690408, -74.1236296"
           destination="Soacha">
         </directions>
         <marker ng-repeat=" pos in positions" position="{{pos.lat}},{{pos.lng}}"></marker>
