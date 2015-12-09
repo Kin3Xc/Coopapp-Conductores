@@ -17,7 +17,7 @@ angular.module('coopapp.controllers', ['ionic', 'ngCordova','LocalStorageModule'
 
 			$http({
 				method: 'POST',
-				url: "https://ikarotech.com/cooptranslibre2/api/loginConductor",
+				url: "https://ikarotech.com/cooptranslibre2/apiapp/loginConductor",
 				params: $scope.login
 			})
 			.success(function(data){
@@ -58,23 +58,29 @@ angular.module('coopapp.controllers', ['ionic', 'ngCordova','LocalStorageModule'
 
 //Controlador para octener la pocision actual del usuario
 //.controller('MapaCtrl',[ '$scope', '$cordovaGeolocation', function($scope, $ionicLoading , $cordovaGeolocation){
-.controller('MapaCtrl', function($scope, $ionicLoading) {
-	$scope.positions = [{
-		lat: 43.07493,
-		lng: -89.381388
-	}];
+.controller('MapaCtrl', function($scope, $rootScope, $http, $ionicHistory, $ionicLoading, localStorageService) {
+	navigator.geolocation.getCurrentPosition(function(position){
+			var latitude  = position.coords.latitude
+			var long = position.coords.longitude
+			$scope.positions = [{
+					lat: position.coords.latitude ,
+					lng: position.coords.longitude
+				}];
+
+			var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+			$scope.positions.push({location: {lat:latitude, lng: long}});
+			$scope.map.setCenter(pos);
+			$ionicLoading.hide();
+		});
 
 	$scope.$on('mapInitialized', function(event, map) {
 		$scope.map = map;
 	});
-
 	$scope.centerOnMe= function(){
 		$scope.positions = [];
 		$ionicLoading.show({
 			template: 'Loading...'
 		});
-
-
 		navigator.geolocation.getCurrentPosition(function(position){
 			console.log('getCurrentPosition');
 			var latitude  = position.coords.latitude
@@ -110,7 +116,7 @@ angular.module('coopapp.controllers', ['ionic', 'ngCordova','LocalStorageModule'
 	// $http.get('https://ikarotech.com/cooptranslibre2/api/cConductorVehiculo/'+ con_id)
 	$http({
 		method: 'GET',
-		url: 'https://ikarotech.com/cooptranslibre2/api/cConductorRuta/'+ con_id
+		url: 'https://ikarotech.com/cooptranslibre2/apiapp/cConductorRuta/'+ con_id
 	})
 	.success(function(data){
 		console.log(data);
@@ -118,7 +124,7 @@ angular.module('coopapp.controllers', ['ionic', 'ngCordova','LocalStorageModule'
 
 		$http({
 			method: 'GET',
-			url: 'https://ikarotech.com/cooptranslibre2/api/cIdRutaConductor/'+ data[0].veh_id
+			url: 'https://ikarotech.com/cooptranslibre2/apiapp/cIdRutaConductor/'+ data[0].veh_id
 		})
 		.success(function(data1){
 			console.log(data1);
@@ -126,7 +132,7 @@ angular.module('coopapp.controllers', ['ionic', 'ngCordova','LocalStorageModule'
 
 			$http({
 				method: 'GET',
-				url: 'https://ikarotech.com/cooptranslibre2/api/cRutaConductor/'+ data1[0].idRuta
+				url: 'https://ikarotech.com/cooptranslibre2/apiapp/cRutaConductor/'+ data1[0].idRuta
 			})
 			.success(function(data2){
 				console.log(data2);
@@ -134,7 +140,7 @@ angular.module('coopapp.controllers', ['ionic', 'ngCordova','LocalStorageModule'
 
 				$http({
 					method: 'GET',
-					url: 'https://ikarotech.com/cooptranslibre2/api/cAlumnosRuta/'+ data2[0].idColegio+'/'+data1[0].idRuta
+					url: 'https://ikarotech.com/cooptranslibre2/apiapp/cAlumnosRuta/'+ data2[0].idColegio+'/'+data1[0].idRuta
 				})
 				.success(function(data3){
 					console.log(data3);

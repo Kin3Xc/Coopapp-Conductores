@@ -1,0 +1,32 @@
+<<<<<<< HEAD
+=======
+
+
+<!-- <ion-view view-title="Lista Alumnos" left-buttons="leftButtons" right-buttons="rightButtons"> -->
+<ion-view view-title="Lista Alunmos">
+  <!--   <ion-header-bar class="bar-dark">
+  <button class="button icon ion-navicon" ng-click="myGoBack()"></button>
+  <h1 class="title title-center" >Alumnos</h1>
+</ion-header-bar> -->
+<ion-content>
+  <ion-list>
+    <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="alumno in alumnos" type="item-text-wrap" href="#/perfilAlumno/{{alumno.alu_id}}">
+      <img ng-src="img/user.png">
+      <h2>{{alumno.alu_nombre}}</h2>
+      <!-- <p>{{alumno.address}}</p> -->
+      <p><span class="hora">{{alumno.Hora}}</span></p>
+      <div ng-switch="alumno.estado_alumno">
+        <div ng-switch-when='1'>
+          <p class="estado-ok" >Activo</p>
+        </div>
+        <div ng-switch-when='2'>
+          <p class="estado-null" >Desactivo</p>
+        </div>
+      </div>
+
+      <i class="icon ion-chevron-right icon-accessory"></i>
+    </ion-item>
+  </ion-list>
+</ion-content>
+</ion-view>
+>>>>>>> upstream/master
