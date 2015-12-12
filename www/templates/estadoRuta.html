@@ -1,5 +1,5 @@
 <ion-view view-title="Ruta" left-buttons="leftButtons" right-buttons="rightButtons">
-<ion-content ng-init="getAlumnos()">
+<ion-content ng-init="">
 	<ion-list>
 		<ion-item class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap">
 			<div>
@@ -10,32 +10,17 @@
 		</ion-item>
 		<div class="list card">
 			<a href="#"  ng-click="showConfirm()" class="item item-icon-left">
-				<i class="icon ion-ios-navigate-outline"></i>
-				Recogida
+				<i class="icon ion-alert-circled"></i>
+				Averiada
 			</a>
 			<a href="#"  ng-click="showConfirm()" class="item item-icon-left">
-				<i class="icon ion-ios-location-outline"></i>
-				Llegada
+				<i class="icon ion-checkmark-circled"></i>
+				Activa
 			</a>
 
 			<a href="#"  ng-click="showConfirm()" class="item item-icon-left">
-				<i class="icon ion-wifi"></i>
-				Trancon
-			</a>
-
-			<a href="#"  ng-click="showConfirm()" class="item item-icon-left">
-				<i class="icon ion-ios-crop"></i>
-				Problemas mecanicos
-			</a>
-
-			<a href="#"  ng-click="showConfirm()" class="item item-icon-left">
-				<i class="icon ion-ios-person-outline"></i>
-				Policia de transito
-			</a>
-
-			<a href="#"  ng-click="estado_adicional()" class="item item-icon-left">
-				<i class="icon ion-ios-redo-outline"></i>
-				Otro
+				<i class="icon ion-minus-circled"></i>
+				Inactiva
 			</a>
 		</div>
 	</ion-list>

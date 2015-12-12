@@ -265,7 +265,9 @@ angular.module('coopapp.controllers', ['ionic', 'ngCordova','LocalStorageModule'
 
 })
 
+.controller('notificationEsCtrl', function($scope,  $ionicPopup, $rootScope, $ionicUser, $ionicPush){
 
+})
 .controller('estadoRutaCtrl', function($scope, $ionicPopup , $location){
 	$scope.verResumenRuta = function(){
 		$location.url('/resumenRuta');
@@ -371,16 +373,19 @@ angular.module('coopapp.controllers', ['ionic', 'ngCordova','LocalStorageModule'
 
 })
 
-.controller('perfilAlumnoCtrl', function($scope, $stateParams, $location, $http){
+.controller('perfilAlumnoCtrl', function($scope, $stateParams, $ionicLoading, $location, $http){
 
 	$scope.chat = function(){
 		$location.url("/chat");
+	};
+	$scope.verResumenRuta = function(){
+		$location.url('/resumenRuta');
 	};
 	var id = $stateParams.id;
 	$scope.alu_id = id;
 	$http({
 		method: 'GET',
-		url: 'https://ikarotech.com/cooptranslibre2/apiapp/cAlumno/'+ id
+		url: 'https://ikarotech.com/cooptranslibre2/apiapp/cAlumnoDetalle/'+ id
 	})
 	.success(function(data){
 		console.log(data);
