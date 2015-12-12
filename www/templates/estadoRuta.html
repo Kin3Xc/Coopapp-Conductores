@@ -1,11 +1,12 @@
 <ion-view view-title="Ruta" left-buttons="leftButtons" right-buttons="rightButtons">
-<ion-content ng-init="">
+<ion-content ng-init="estado_ruta()">
 	<ion-list>
 		<ion-item class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap">
 			<div>
-				<h2>Ruta #41</h2>
-				<p>Origen: BANDERAS</p>
-				<p>Destino: CASTILLA</p>
+				<h2>Ruta # {{dataruta.id_ruta}}</h2>
+				<p>Origen: {{dataruta.rut_origen}}</p>
+				<p>Destino: {{dataruta.rut_destino}} </p>
+				<p>Estado Ruta: {{dataruta.estado_Ruta}} </p>
 			</div>
 		</ion-item>
 		<div class="list card">
@@ -24,6 +25,6 @@
 			</a>
 		</div>
 	</ion-list>
-	<button class="button button-balanced center" ng-click="verResumenRuta()">Ver Historial Notificaiones</button>
+
 </ion-content>
 </ion-view>
