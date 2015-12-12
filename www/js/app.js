@@ -74,6 +74,11 @@ angular.module('coopapp', ['ionic', 'coopapp.controllers', 'ionic.service.core',
     templateUrl: 'templates/listaAlumnos.html',
     controller: 'listAlumCtrl'
   })
+  .state('chat', {
+    url: '/chat',
+    templateUrl: 'templates/chat.html',
+    controller: 'chatCtrl'
+  })
 
    .state('perfilAlumno', {
     url: '/perfilAlumno/:id',
