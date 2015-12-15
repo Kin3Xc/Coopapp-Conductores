@@ -80,7 +80,7 @@ angular.module('coopapp', ['ionic', 'coopapp.controllers', 'ionic.service.core',
     controller: 'listAlumCtrl'
   })
   .state('chat', {
-    url: '/chat',
+    url: '/chat/:id_padre/:id_estudiante',
     templateUrl: 'templates/chat.html',
     controller: 'chatCtrl'
   })

@@ -59,6 +59,44 @@ angular.module('coopapp.controllers', ['ionic', 'ngCordova','LocalStorageModule'
 //Controlador para octener la pocision actual del usuario
 //.controller('MapaCtrl',[ '$scope', '$cordovaGeolocation', function($scope, $ionicLoading , $cordovaGeolocation){
 .controller('MapaCtrl', function($scope, $rootScope, $http, $ionicHistory, $ionicLoading, localStorageService) {
+	$scope.wayPoints = [];
+	var idColegio = localStorageService.get('idColegio');
+	var idRuta = localStorageService.get('idRuta');
+
+	// Setup the loader
+	$ionicLoading.show({
+		content: 'Cargado ruta...',
+		animation: 'fade-in',
+		showBackdrop: true,
+		maxWidth: 200,
+		showDelay: 0
+	});
+
+
+	$http({
+		method: 'GET',
+		url: 'https://ikarotech.com/cooptranslibre2/apiapp/cAlumnosRuta/'+ idColegio+'/'+idRuta
+	})
+	.success(function(data3){
+		console.log(data3);
+		$scope.alumnos = data3;
+
+		for (var i = 0; i <= data3.length; i++) {
+			$scope.wayPoints[i] = data3.
+		};
+
+		if (data3 == null) {
+			alert('No hay datos asociados');
+			$ionicLoading.hide();
+		}
+		$ionicLoading.hide();
+	})
+	.error(function(err3){
+		alertalert('Error al consultar los datos ' + err3);
+		$ionicLoading.hide();
+	})
+
+
 	navigator.geolocation.getCurrentPosition(function(position){
 			var latitude  = position.coords.latitude
 			var long = position.coords.longitude
@@ -344,7 +382,23 @@ angular.module('coopapp.controllers', ['ionic', 'ngCordova','LocalStorageModule'
 })
 
 
-.controller('chatCtrl', function($scope, $stateParams, $location, $http){
+.controller('chatCtrl', function($scope, $stateParams, $location, $http, localStorageService){
+	$scope.chats = [];
+
+	$scope.id_estudiante = $stateParams.id_estudiante;
+	$scope.id_padre = $stateParams.id_padre;
+	$scope.id_ruta = localStorageService.get('idRuta');
+	$scope.con_id = localStorageService.get('con_id');
+
+
+	$http.get('https://ikarotech.com/cooptranslibre2/apiapp/cRutaConductorChat/'+$scope.con_id+'/'+$scope.id_padre+'/'+$scope.id_ruta)
+		.success(function(data){
+			console.log(data);
+			$scope.chats = data;
+		})
+		.error(function(err){
+			console.log(err);
+		});
 
 	 $scope.hideTime = true;
 
@@ -352,19 +406,41 @@ angular.module('coopapp.controllers', ['ionic', 'ngCordova','LocalStorageModule'
     isIOS = ionic.Platform.isWebView() && ionic.Platform.isIOS();
 
   $scope.sendMessage = function() {
-    alternate = !alternate;
 
-    var d = new Date();
-  d = d.toLocaleTimeString().replace(/:\d+ /, ' ');
+  	var mensaje = {
+  		con_id: $scope.con_id,
+  		id_padre: $scope.id_padre,
+  		id_estudiante: $scope.id_estudiante,
+  		is_creator: $scope.con_id,
+  		id_ruta: $scope.id_ruta,
+  		msj: $scope.input_chat
+  	};
 
-    $scope.messages.push({
-      userId: alternate ? '12345' : '54321',
-      text: $scope.data.message,
-      time: d
-    });
+  	console.log(mensaje);
 
-    delete $scope.data.message;
-    $ionicScrollDelegate.scrollBottom(true);
+  	$http({
+		method: 'POST',
+		url: "https://ikarotech.com/cooptranslibre2/apiapp/iRutaConductorChat",
+		params: mensaje
+	})
+  	// $http.post('https://ikarotech.com/cooptranslibre2/apiapp/iRutaConductorChat', mensaje)
+	.success(function(data){
+		console.log(data);
+
+		$http.get('https://ikarotech.com/cooptranslibre2/apiapp/cRutaConductorChat/'+$scope.con_id+'/'+$scope.id_padre+'/'+$scope.id_ruta)
+		.success(function(data1){
+			console.log(data1);
+			$scope.chats = data1;
+		})
+		.error(function(err){
+			console.log(err);
+		});
+		})
+	.error(function(){
+		alert('Error al enviar el mensaje');
+	});
+
+ 	// console.log($scope.input_chat);
 
   };
 
@@ -396,8 +472,8 @@ angular.module('coopapp.controllers', ['ionic', 'ngCordova','LocalStorageModule'
 
 .controller('perfilAlumnoCtrl', function($scope, $stateParams, $ionicLoading, $location, $http){
 
-	$scope.chat = function(){
-		$location.url("/chat");
+	$scope.chat = function(id,id_estudiante){
+		$location.url("/chat/"+id+'/'+id_estudiante);
 	};
 	$scope.verResumenRuta = function(){
 		$location.url('/resumenRuta');

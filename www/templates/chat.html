@@ -1,19 +1,17 @@
   <ion-view view-title="Chat" left-buttons="leftButtons" right-buttons="rightButtons">
   <ion-content>
-   <div ng-repeat="message in messages"
-       ng-class="{other: message.userId != myId}"
-       class="messages">
+   <div ng-repeat="chat in chats ">
 
-    <div class="message" ng-class="{'slide-right': hideTime, '': !hideTime}">
-      <span>{{ message.text }}</span>
+    <div class="message">
+      <span>{{ chat.texto_chat }}</span>
     </div>
 
-    <div class="time" ng-class="{'slide-right': hideTime, '': !hideTime}">{{message.time}}</div>
+    <div class="time">{{chat.id_ruta}}</div>
   </div>
 </ion-content>
 <ion-footer-bar keyboard-attach class="bar-coopapp item-input-inset">
   <label class="item-input-wrapper">
-    <input type="text" placeholder="Type your message" on-return="sendMessage(); closeKeyboard()" ng-model="data.message" on-focus="inputUp()" on-blur="inputDown()" />
+    <input type="text" placeholder="Type your message" ng-model="input_chat" />
   </label>
   <button class="button button-clear" ng-click="sendMessage()">
     Enviar

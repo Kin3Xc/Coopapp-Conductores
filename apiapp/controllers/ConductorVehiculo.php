@@ -84,6 +84,20 @@ $app->get('/cRutaConductorAlumnos/:id',function ($rut_id) {
 });
 
 
+//NUEVO
+//Consultar los mensajes del chat
+$app->get('/cRutaConductorChat/:con_id/:id_padre/:id_ruta',function ($con_id, $id_padre, $id_ruta) {
+
+    global $db;
+
+    $q = "SELECT * FROM chat_app WHERE id_conductor='$con_id' AND id_padre='$id_padre' AND id_ruta='$id_ruta' ORDER BY id ASC";
+
+    $datos = $db->get_results($q);
+
+    echo json_encode($datos);  
+});
+
+
 
 // NUEVO
 // permite guardar un mensaje de chat en la db
@@ -91,20 +105,26 @@ $app->post('/iRutaConductorChat',function () {
 
     global $db;
 
-    $con_id  =$_REQUEST[`con_id`];
-    $msj     =$_REQUEST['msj'];
+    $con_id  = $_REQUEST['con_id'];
+    $id_padre = $_REQUEST['id_padre'];
+    $id_estudiante = $_REQUEST['id_estudiante'];
+    $is_creator = $_REQUEST['is_creator'];
+    $id_ruta = $_REQUEST['id_ruta'];
+    $msj     = $_REQUEST['msj'];
 
     $q = "INSERT INTO chat_app (
             id_conductor, 
             id_padre, 
             id_estudiante, 
             is_creator, 
+            id_ruta,
             texto_chat
         ) VALUES (
             '$con_id',
-            '1015445839',
-            '1016072954',
-            '1015445839',
+            '$id_padre',
+            '$id_estudiante',
+            '$is_creator',
+            '$id_ruta',
             '$msj'
         );";
 
@@ -112,7 +132,7 @@ $app->post('/iRutaConductorChat',function () {
 
         //$db->debug();
  
-    $mensaje = array('mensaje'=>'Inserto ok');
+    $mensaje = array('mensaje'=> 'Mensaje guardado');
 
     echo json_encode($mensaje);
 });
