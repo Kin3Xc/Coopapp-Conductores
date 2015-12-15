@@ -8,25 +8,33 @@
       <h2>{{perfil.alu_nombre}}</h2>
       <p>Documento : {{perfil.alu_documento}}</p>
       <p>ID: {{perfil.alu_id}}</p>
+      <p>Tipo Sangre : {{perfil.tsa_nombre}}</p>
     </div>
 
     <div class="item item-body">
       <p>Direccion : {{perfil.alu_dir}}</p>
       <p>Barrio : {{perfil.alu_barrio}}</p>
-      <p>Telefono : {{perfil.alu_telfijo}}</p>
-      <p>Fecha nacimiento : 2005-10-07</p>
-      <p> Curso : 303</p>
+      <p>Celular : {{perfil.alu_telcelular}}</p>
+      <p>Colegio : {{perfil.col_nombre}}</p>
+      <p>Curso : {{perfil.cur_nombre}}</p>
+    </div>
+     <div class="item item-body">
+      <h2>Informacion del acudiente</h2>
+      <p>Nombre : {{perfil.acu_nombre}}</p>
+      <p>Parentezco : {{perfil.acu_parentesco}}</p>
+      <p>Telefono : {{perfil.acu_telfijo}}</p>
+      <p>Celular : {{perfil.acu_telcelular}}</p>
     </div>
     <div class="item tabs tabs-secondary tabs-icon-left">
-      <a class="tab-item" href="{{perfil.alu_telcelular}}">
+      <!--<a class="tab-item" href="{{perfil.alu_telcelular}}">
         <i class="icon ion-android-call"></i>
         Llamar
-      </a>
+      </a>-->
       <a class="tab-item" ng-click="chat()">
         <i class="icon ion-chatbubbles"></i>
         Chat
       </a>
-      <a class="tab-item" href="#">
+      <a class="tab-item" href="#/notificationEs/{{perfil.alu_id}}">
         <i class="icon ion-chatbox"></i>
         Notificaciones
       </a>

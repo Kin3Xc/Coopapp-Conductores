@@ -56,6 +56,11 @@ angular.module('coopapp', ['ionic', 'coopapp.controllers', 'ionic.service.core',
     templateUrl: 'templates/notifications.html',
     controller: 'notificationCtrl'
   })
+  .state('notificationEs', {
+    url: '/notificationEs/:id',
+    templateUrl: 'templates/notificationsEs.html',
+    controller: 'notificationEsCtrl'
+  })
 
   .state('estadoRuta', {
     url: '/estadoRuta',
@@ -73,6 +78,11 @@ angular.module('coopapp', ['ionic', 'coopapp.controllers', 'ionic.service.core',
     url: '/listaalumnos',
     templateUrl: 'templates/listaAlumnos.html',
     controller: 'listAlumCtrl'
+  })
+  .state('chat', {
+    url: '/chat',
+    templateUrl: 'templates/chat.html',
+    controller: 'chatCtrl'
   })
 
    .state('perfilAlumno', {

@@ -13,6 +13,13 @@
         $datos = $db->get_results($q);
         echo json_encode($datos);
     });
+        //Consultar Por ID
+    $app->get('/cEstadoRutaapp/:id',function ($id_ruta) {
+        global $db;
+        $q = "SELECT * FROM estado_ruta_App AS e, Ruta AS r WHERE id_ruta='$id_ruta' AND r.rut_id ='$id_ruta'";
+        $datos = $db->get_results($q);
+        echo json_encode($datos);
+    });
 
     //Insertar
     $app->post('/iEstadoRuta',function(){

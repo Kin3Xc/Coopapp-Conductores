@@ -117,4 +117,51 @@ $app->post('/loginConductor',function (){
         // }
         echo json_encode($datos);
 });
+
+//Consultas los chat
+$app->get('/chat/:idConductor/:idAcudiente',function ($idConductor , $idAcudiente) {
+    global $db;        
+        $q  = "SELECT * FROM `chat_app` AS chat WHERE chat.id_padre = $idAcudiente AND chat.id_conductor = $idConductor";
+        $datos = $db->get_results($q);
+        echo json_encode($datos); 
+});
+
+//Insertar chat
+
+$app->post('/chat',function (){
+
+        global $db;
+ //Chat Campos
+
+        $id               =       $_REQUEST['id'];        
+        $id_conductor     =       $_REQUEST['id_conductor'];
+        $id_padre         =       $_REQUEST['id_padre'];
+        $id_estudiante    =       $_REQUEST['id_estudiante'];
+        $is_creator       =       $_REQUEST['is_creator'];
+        $texto_chat       =       $_REQUEST['texto_chat'];
+        
+        //insertar chat
+        $q      =   "INSERT INTO `chat_app`(
+            `id`, 
+            `id_conductor`, 
+            `id_padre`, 
+            `id_estudiante`, 
+            `is_creator`, 
+            `texto_chat`)
+            VALUES (
+             '$id',
+             '$id_conductor',
+             '$id_padre',
+             '$id_estudiante',
+             '$is_creator',
+             '$texto_chat',
+             );";
+
+        $datos   =   $db->query($q);
+        //$db->debug();
+        $mensaje = array('mensaje'=>'ok');
+
+         echo json_encode($mensaje);
+        });
+
  ?>

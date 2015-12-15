@@ -134,6 +134,7 @@ angular.module('coopapp.controllers', ['ionic', 'ngCordova','LocalStorageModule'
 		})
 		.success(function(data1){
 			console.log(data1);
+
 			localStorageService.set('idRuta', data1[0].idRuta);
 
 			$http({
@@ -271,8 +272,10 @@ angular.module('coopapp.controllers', ['ionic', 'ngCordova','LocalStorageModule'
 
 })
 
+.controller('notificationEsCtrl', function($scope, $http,  $ionicPopup, $rootScope, $ionicUser, $ionicPush ){
 
-.controller('estadoRutaCtrl', function($scope, $ionicPopup , $location){
+})
+.controller('estadoRutaCtrl', function($scope, $http ,$ionicPopup , $location , localStorageService){
 	$scope.verResumenRuta = function(){
 		$location.url('/resumenRuta');
 	};
@@ -293,47 +296,117 @@ angular.module('coopapp.controllers', ['ionic', 'ngCordova','LocalStorageModule'
 	};
 
 	// Triggered on a button click, or some other target
-	$scope.estado_adicional = function() {
-		$scope.data = {}
+	$scope.estado_ruta = function() {
+		$scope.coductor = localStorageService.get('con_id');
+		$http({
+		method: 'GET',
+		url: 'https://ikarotech.com/cooptranslibre2/apiapp/cConductorRuta/'+ $scope.coductor
+		})
+		.success(function(data){
+			console.log(data);
+			localStorageService.set('veh_id', data[0].veh_id);
 
-		// An elaborate, custom popup
-		var myPopup = $ionicPopup.show({
-			template: '<input type="password" ng-model="data.estado">',
-			title: 'Nuevo estado',
-			subTitle: 'Por favor ingrese la desripción de su estado',
-			scope: $scope,
-			buttons: [
-				{ text: 'Cancelar' },
-				{
-					text: '<b>Envíar</b>',
-					type: 'button-positive',
-					onTap: function(e) {
-						if (!$scope.data.estado) {
-							//don't allow the user to close unless he enters wifi password
-							e.preventDefault();
-						} else {
-							return $scope.data.estado;
-						}
-					}
-				}
-			]
-		});
+			$http({
+				method: 'GET',
+				url: 'https://ikarotech.com/cooptranslibre2/apiapp/cIdRutaConductor/'+ data[0].veh_id
+			})
+			.success(function(data1){
+				console.log(data1);
+				localStorageService.set('idRuta', data1[0].idRuta);
+				$scope.ruta = localStorageService.get('idRuta');
+				///cEstadoRuta/:id
 
-		myPopup.then(function(res) {
-			console.log('Mensaje', res);
-			myPopup.close();
-		});
+					$http({
+					method: 'GET',
+					url: 'https://ikarotech.com/cooptranslibre2/apiapp/cEstadoRutaapp/'+$scope.ruta
+					})
+					.success(function(dataruta){
+						console.log(dataruta);
+						$scope.dataruta = dataruta[0];
+					})
+					.error(function(err1){
+						alert('No estado ruta:  ' + err1);
+						$ionicLoading.hide();
+					})
+			})
+			.error(function(err1){
+				alert('Error al consultar los datos ' + err1);
+				$ionicLoading.hide();
+			})
+
+			// $ionicLoading.hide();
+		})
+		.error(function(err){
+			alert('Error al consultar los datos ' + err);
+			$ionicLoading.hide();
+		})
 	};
 })
 
 
-.controller('perfilAlumnoCtrl', function($scope, $stateParams, $http){
+.controller('chatCtrl', function($scope, $stateParams, $location, $http){
 
+	 $scope.hideTime = true;
+
+  var alternate,
+    isIOS = ionic.Platform.isWebView() && ionic.Platform.isIOS();
+
+  $scope.sendMessage = function() {
+    alternate = !alternate;
+
+    var d = new Date();
+  d = d.toLocaleTimeString().replace(/:\d+ /, ' ');
+
+    $scope.messages.push({
+      userId: alternate ? '12345' : '54321',
+      text: $scope.data.message,
+      time: d
+    });
+
+    delete $scope.data.message;
+    $ionicScrollDelegate.scrollBottom(true);
+
+  };
+
+
+  $scope.inputUp = function() {
+    if (isIOS) $scope.data.keyboardHeight = 216;
+    $timeout(function() {
+      $ionicScrollDelegate.scrollBottom(true);
+    }, 300);
+
+  };
+
+  $scope.inputDown = function() {
+    if (isIOS) $scope.data.keyboardHeight = 0;
+    $ionicScrollDelegate.resize();
+  };
+
+  $scope.closeKeyboard = function() {
+    // cordova.plugins.Keyboard.close();
+  };
+
+
+  $scope.data = {};
+  $scope.myId = '12345';
+  $scope.messages = [];
+
+
+})
+
+.controller('perfilAlumnoCtrl', function($scope, $stateParams, $ionicLoading, $location, $http){
+
+	$scope.chat = function(){
+		$location.url("/chat");
+	};
+	$scope.verResumenRuta = function(){
+		$location.url('/resumenRuta');
+	};
 	var id = $stateParams.id;
 	$scope.alu_id = id;
 	$http({
 		method: 'GET',
-		url: 'https://ikarotech.com/cooptranslibre2/apiapp/cAlumno/'+ id
+		url: 'https://ikarotech.com/cooptranslibre2/apiapp/cAlumnoDetalle/'+ id
 	})
 	.success(function(data){
 		console.log(data);

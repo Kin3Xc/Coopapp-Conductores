@@ -38,6 +38,7 @@ include_once("controllers/Banco.php");
 include_once("controllers/Ciudad.php");
 include_once("controllers/Colegio.php");
 include_once("controllers/Conductor.php");
+include_once("controllers/chat.php");
 include_once("controllers/ConductorVehiculo.php");
 include_once("controllers/ServicioSolicitado.php");
 include_once("controllers/ValorServicio.php");
