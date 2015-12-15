@@ -81,9 +81,31 @@ angular.module('coopapp.controllers', ['ionic', 'ngCordova','LocalStorageModule'
 		console.log(data3);
 		$scope.alumnos = data3;
 
-		for (var i = 0; i <= data3.length; i++) {
-			$scope.wayPoints[i] = data3.
-		};
+		// console.log(data3[0].latitude);
+		// var gps = [];
+		var count = 0;
+
+		for (var i = 0; i <= data3.length-1; i++) {
+
+			if (data3[i].estado_alumno != 2) {	
+
+				console.log(data3[i].estado_alumno);
+				// gps[i] =  data3[i];
+
+				// console.log(gps);
+
+				for (var j = 0; j <= count; j++) {
+
+					$scope.wayPoints[j] = {
+						location: {lat: parseFloat(data3[j].latitude), lng: parseFloat(data3[j].longitude)},
+						stopover: true
+					};
+
+				}
+				count++;
+			}
+		}
+		console.log($scope.wayPoints);
 
 		if (data3 == null) {
 			alert('No hay datos asociados');
@@ -115,10 +137,10 @@ angular.module('coopapp.controllers', ['ionic', 'ngCordova','LocalStorageModule'
 		$scope.map = map;
 	});
 
-	$scope.wayPoints = [
-      {location: {lat:4.6690408, lng: -74.1036296}, stopover: true},
-      {location: {lat:4.7690408, lng: -74.2036296}, stopover: true},
-    ];
+	// $scope.wayPoints = [
+ //      {location: {lat:4.6690408, lng: -74.1036296}, stopover: true},
+ //      {location: {lat:4.7690408, lng: -74.2036296}, stopover: true},
+ //    ];
 
 	$scope.centerOnMe= function(){
 		$scope.positions = [];
