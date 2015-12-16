@@ -26,13 +26,20 @@
         global $db;
 
         
-        $q     = "SELECT Alumno.*, Colegio.col_nombre AS colegio, Jornada.jor_nombre AS jornada
+        $q     = "SELECT Alumno.*, Colegio.col_nombre AS colegio, Jornada.jor_nombre AS jornada, RutaAlumnos.*, vehiculosRuta.*, ConductorVehiculo.*, Conductor.con_nombre, Conductor.con_telcelular
         FROM Alumno
         INNER JOIN Colegio
         ON Colegio.col_id = Alumno.col_id
-
+        INNER JOIN RutaAlumnos
+        ON RutaAlumnos.idAlumno = Alumno.alu_id
         INNER JOIN Jornada
         ON Jornada.jor_id = Alumno.jor_id
+        INNER JOIN vehiculosRuta 
+        ON vehiculosRuta.idRuta = RutaAlumnos.idRuta
+        INNER JOIN ConductorVehiculo
+        ON ConductorVehiculo.veh_id = vehiculosRuta.idVehiculo
+        INNER JOIN Conductor
+        ON Conductor.con_id = ConductorVehiculo.con_id
          
         WHERE Alumno.acu_id = '$idAcudiente'";
 

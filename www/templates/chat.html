@@ -1,15 +1,13 @@
   <ion-view view-title="Chat" left-buttons="leftButtons" right-buttons="rightButtons">
   <ion-content>
    <div ng-repeat="chat in chats ">
-
     <div class="message">
-      <span>{{ chat.texto_chat }}</span>
+      <span ng-if="chat.is_creator  == chat.id_conductor">{{ chat.texto_chat }}</span>
+      <span ng-if="chat.is_creator  == chat.id_padre"class="active">{{chat.texto_chat}}</span>
     </div>
-
-    <div class="time">{{chat.id_ruta}}</div>
   </div>
 </ion-content>
-<ion-footer-bar keyboard-attach class="bar-coopapp item-input-inset">
+<ion-footer-bar class="bar-coopapp item-input-inset">
   <label class="item-input-wrapper">
     <input type="text" placeholder="Type your message" ng-model="input_chat" />
   </label>

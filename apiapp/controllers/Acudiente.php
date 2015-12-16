@@ -100,17 +100,18 @@ $app->delete('/eAcudiente',function () {
 });
 
 
+
 //  login acudiente 
-$app->post('/login',function (){
+$app->post('/loginAcudiente',function (){
     $user  =$_REQUEST['usuario'];
     $pass  =$_REQUEST['password'];
 
     global $db;
         $q     = "SELECT * FROM Acudiente WHERE acu_id = '$user' AND acu_password = '$pass'";
         $datos = $db->get_results($q);
-        if ($datos < 1) {
-            $datos = array('mensaje' =>  'Login incorrecto');
-        }
+        // if ($datos < 1) {
+        //     $datos = array('mensaje' =>  'Login incorrecto');
+        // }
         echo json_encode($datos);
 });
 

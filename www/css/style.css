@@ -113,7 +113,24 @@ h1 {
 	color: #FFFFFF;
 }
 /* Chat*/
-
+.message{
+	display: block;
+	width: 100%;
+}
+.message span{
+	padding: 10px;
+	width: 80%;
+	background-color: #D0F3D1;
+	float: right;
+	margin: 5px 0;
+}	
+.message span.active{
+	padding: 10px;
+	width: 80%;
+	background-color: #a7a7a7;
+	float: left;
+	margin: 5px 0;
+}
 /* Empty. Add your own CSS if you like */
 .Login{
 	position: fixed;

@@ -62,6 +62,21 @@ $app->post('/iColegio',function (){
 
         });
 
+//  login colegio
+$app->post('/loginColegio',function (){
+    $user  =$_REQUEST['usuario'];
+    $pass  =$_REQUEST['password'];
+
+    global $db;
+        $q     = "SELECT * FROM Colegio WHERE col_usuario = '$user' AND col_password = '$pass'";
+        $datos = $db->get_results($q);
+        if ($datos < 1) {
+            $datos = array('mensaje' =>  'Login incorrecto');
+        }
+        echo json_encode($datos);
+});
+
+
 //Eliminar
 
 // DELETE route
